@@ -7,7 +7,7 @@ module.exports = {
     connection: {
       host : 'localhost',
       user : 'root',
-      password : 'huyen123',
+      password : '1',
       database : 'doctor_X',
       charset : 'utf8'
     }
