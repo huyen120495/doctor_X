@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
         table.dateTime('time');
         table.string('hospital_name');
         table.string('user_name');
-        table.bigInteger('deleted_at');
+        table.dateTime('deleted_at');
     });
 };
 

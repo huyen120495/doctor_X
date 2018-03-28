@@ -4,9 +4,8 @@ exports.up = function(knex, Promise) {
         table.increments('id');
         table.string('name');
         table.integer('location_id');
-        table.string('phone');
         table.text('describe');
-        table.bigInteger('deleted_at');
+        table.dateTime('deleted_at');
     });
 };
 

@@ -5,11 +5,11 @@ module.exports = {
   development: {
     client: 'mysql',
     connection: {
-      host : 'localhost',
-      user : 'root',
-      password : 'huyen123',
-      database : 'doctor_X',
-      charset : 'utf8'
+      host      : 'localhost',
+      user      : 'root',
+      password  : '169614',
+      database  : 'doctor_X',
+      charset   : 'utf8'
     }
   },
 
