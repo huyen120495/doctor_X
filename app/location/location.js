@@ -29,6 +29,9 @@ class Location {
         return this.address;
     }
 
+    distence(location) {
+        
+    }
 }
 
 module.exports = Location;
