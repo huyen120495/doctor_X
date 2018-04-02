@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 
-class Bcrypt {
+class BcryptHasher {
 
     constructor() {
         this.saltRounds = 10;
@@ -25,4 +25,4 @@ class Bcrypt {
     }
 }
 
-module.exports = Bcrypt;
+module.exports = BcryptHasher;

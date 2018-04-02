@@ -14,7 +14,6 @@ class Register {
         })
         .then(credentialId => {
             user.setCredentialId(credentialId[0]);
-            console.log(user);
             return this.userRepo.add(user);
         });
     } 

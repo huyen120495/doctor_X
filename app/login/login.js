@@ -1,6 +1,6 @@
 class Login {
 
-    constructor(credentialRepo, hasher, userRepo) {
+    constructor(credentialRepo, userRepo, hasher) {
         this.credentialRepo = credentialRepo;
         this.hasher = hasher;
         this.userRepo = userRepo;

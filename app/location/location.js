@@ -1,3 +1,5 @@
+const turf = require('@turf/turf');
+
 class Location {
 
     constructor(lat, long) {
@@ -30,8 +32,12 @@ class Location {
     }
 
     distence(location) {
-        
+        let from = turf.point([this.long, this.lat]);
+        let to = turf.point([location.getLong(), location.getLat()]);
+        let options = {units : 'kilometers'};
+        return turf.distance(from, to, options);
     }
+    
 }
 
 module.exports = Location;
