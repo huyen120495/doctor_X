@@ -12,6 +12,7 @@ const CredentialRepo = require('./app/credential/credential-repository');
 const Register = require('./app/register/register');
 const Login = require('./app/login/login')
 const Hasher = require('./app/encrypt/bcript-hasher');
+const RegistrationForm = require('./app/register/registration-form');
 
 let credentialRepo = new CredentialRepo(Connection);
 let userRepo = new UserRepo(Connection);
@@ -24,14 +25,15 @@ let credential = new Credential('huyen120495@gmail.com', 'huyen123');
 let user = new User();
 user.setFirstName('dang');
 user.setLastName('huyen');
+let registrationForm = new RegistrationForm(credential, user);
 
-login.login(credential).then(console.log,console.log)
+// login.login(credential).then(console.log,console.log)
 
-// register.register(credential, user).then(() => {
-//     console.log('ok');
-// }, (a) => {
-//     console.log(a);
-// })
+register.register(registrationForm).then(() => {
+    console.log('ok');
+}, (a) => {
+    console.log(a);
+})
 
 
 // let hospitalRepo = new HospitalRepository(Connection);

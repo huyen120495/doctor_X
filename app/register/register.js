@@ -6,15 +6,15 @@ class Register {
         this.hasher = hasher;
     }
 
-    register(credential, user) {
-        return this.hasher.hash(credential.password)
+    register(registrationForm) {
+        return this.hasher.hash(registrationForm.getCredential().getPassword())
         .then(newPassword => {
-            credential.setPassword(newPassword);
-            return this.credentialRepo.add(credential);
+            registrationForm.getCredential().setPassword(newPassword);
+            return this.credentialRepo.add(registrationForm.getCredential());
         })
         .then(credentialId => {
-            user.setCredentialId(credentialId[0]);
-            return this.userRepo.add(user);
+            registrationForm.getUser().setCredentialId(credentialId[0]);
+            return this.userRepo.add(registrationForm.getUser());
         });
     } 
 
