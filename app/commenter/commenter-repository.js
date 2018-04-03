@@ -9,7 +9,7 @@ class CommenterRepository {
             hospital_id : commenter.getHospital().getId(),
             hospital_name : commenter.getHospital().getName(),
             user_id : commenter.getUser().getId(),
-            user_name : commenter.getUser().getFirstName() + commenter.getUser().getLastName(),
+            user_name : commenter.getUser().getName(),
             content : commenter.getContent,
             time : commenter.getTime()
         })
@@ -17,12 +17,7 @@ class CommenterRepository {
 
     edit(commenter) {
         return this.connection('comments').update({
-            hospital_id : commenter.getHospital().getId(),
-            hospital_name : commenter.getHospital().getName(),
-            user_id : commenter.getUser().getId(),
-            user_name : commenter.getUser().getFirstName() + commenter.getUser().getLastName(),
-            content : commenter.getContent,
-            time : commenter.getTime()
+            content : commenter.getContent
         }).where({
             id : commenter.getId(),
             deleted_at : null
@@ -39,15 +34,17 @@ class CommenterRepository {
 
     searchByHospitalId(hospital_id) {
         return this.connection('comments').where({
-            hospital_id : hospital_id
+            hospital_id : hospital_id,
+            deleted_at : null
         })
     }
 
     editUserName(user) {
         return this.connection('comments').update({
-            user_name : commenter.getUser().getFirstName() + commenter.getUser().getLastName()
+            user_name : commenter.getUser().getName()
         }).where({
-            user_id : user.getId()
+            user_id : user.getId(),
+            deleted_at : null
         })
     }
 
@@ -55,7 +52,8 @@ class CommenterRepository {
         return this.connection('comments').update({
             hospital_name : commenter.getHospital().getName()
         }).where({
-            hospital_id : hospital.getId()
+            hospital_id : hospital.getId(),
+            deleted_at : null
         })
     }
 

@@ -16,6 +16,10 @@ class User {
         return this.lastName;
     }
 
+    getName() {
+        return this.firstName + ' ' + this.lastName; 
+    }
+
     setAvatar(avatar) {
         this.avatar = avatar;
     }

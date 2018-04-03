@@ -1,4 +1,4 @@
-class Login {
+class Authenticate {
 
     constructor(credentialRepo, userRepo, hasher) {
         this.credentialRepo = credentialRepo;
@@ -6,7 +6,7 @@ class Login {
         this.userRepo = userRepo;
     }
 
-    login(credential) {
+    signIn(credential) {
         return this.credentialRepo.searchByEmail(credential.email)
         .then(credentialDB => {
             if (!credentialDB[0]) throw new Error("Email k dung");
@@ -19,6 +19,18 @@ class Login {
         });
     }
 
+    signUp(registrationForm) {
+        return this.hasher.hash(registrationForm.getCredential().getPassword())
+        .then(newPassword => {
+            registrationForm.getCredential().setPassword(newPassword);
+            return this.credentialRepo.add(registrationForm.getCredential());
+        })
+        .then(credentialId => {
+            registrationForm.getUser().setCredentialId(credentialId[0]);
+            return this.userRepo.add(registrationForm.getUser());
+        });
+    }
+
 }
 
-module.exports = Login;
+module.exports = Authenticate;
