@@ -14,7 +14,7 @@ class UserRepository {
     }
 
     edit(user) {
-        return this.connection('users').update({
+        let userEdit = this.connection('users').update({
             first_name : user.getFirstName(),
             last_name : user.getLastName(),
             avatar : user.getAvatar(),
@@ -22,6 +22,13 @@ class UserRepository {
         }).where({
             id : user.getId()
         })
+        let userComment = this.connection('comments').update({
+            user_name : user.getName()
+        }).where({
+            user_id : user.getId(),
+            deleted_at : null
+        })
+        return Promise.all([userEdit, userComment]);
     }
 
     searchByCredentialId(id) {
