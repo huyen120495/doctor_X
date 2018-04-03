@@ -21,7 +21,7 @@ class CridentialReposytory {
 
     delete(id) {
         return this.connection('credentials').update({
-            deleted_at : new Date().getDate()
+            deleted_at : new Date().getTime()
         }).where({
             id : id
         })

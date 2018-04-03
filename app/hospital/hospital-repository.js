@@ -26,7 +26,7 @@ class HospitalRepository {
 
     delete(id) {
         return this.connection('hospitals').update({
-            deleted_at : new Date().getDate()
+            deleted_at : new Date().getTime()
         }).where({
             id : id
         })

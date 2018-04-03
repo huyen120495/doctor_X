@@ -43,6 +43,22 @@ class CommenterRepository {
         })
     }
 
+    editUserName(user) {
+        return this.connection('comments').update({
+            user_name : commenter.getUser().getFirstName() + commenter.getUser().getLastName()
+        }).where({
+            user_id : user.getId()
+        })
+    }
+
+    editHospitalName(hospital) {
+        return this.connection('comments').update({
+            hospital_name : commenter.getHospital().getName()
+        }).where({
+            hospital_id : hospital.getId()
+        })
+    }
+
 }
 
 module.exports = CommenterRepository;

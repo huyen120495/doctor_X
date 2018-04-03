@@ -1,9 +1,10 @@
 class Commenter {
 
-    constructor(user, hospital) {
+    constructor(user, hospital, content) {
         this.uesr = user;
         this.hospital = hospital;
-        this.time = new Date().getDate();
+        this.content = content;
+        this.time = new Date().getTime();
     }
 
     setContent(content) {
