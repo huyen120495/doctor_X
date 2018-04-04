@@ -45,6 +45,7 @@ class Hospital {
             describe : this.getDescribe()
         }
     }
+    
 }
 
 module.exports = Hospital;

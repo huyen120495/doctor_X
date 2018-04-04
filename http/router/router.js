@@ -5,6 +5,4 @@ router.get('/', (request, response) => {
     response.send('hello word..!?!');
 });
 
-
-
 module.exports = router;

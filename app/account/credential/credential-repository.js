@@ -1,4 +1,5 @@
 class CridentialReposytory {
+    
     constructor(connection) {
         this.connection = connection;
     }
@@ -24,7 +25,7 @@ class CridentialReposytory {
             deleted_at : new Date().getTime()
         }).where({
             id : id
-        })
+        });
     }
 
     getAll() {
