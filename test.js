@@ -32,8 +32,7 @@ hospital1.setId(2);
 let Rater = require('./app/interaction/rater');
 let RaterRepo = require('./app/interaction/rater-repository');
 let raterRepo = new RaterRepo(Connection);
-let rater = new Rater(user,hospital1, 10, 'content ... edit');
-rater.setId(1);
+let rater = new Rater(user,hospital1, 9, 'content ... edit');
 console.log(rater);
 
-raterRepo.edit(rater).then(console.log);
+raterRepo.add(rater).then(console.log);
