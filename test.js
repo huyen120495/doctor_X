@@ -16,41 +16,24 @@ const RegistrationForm = require('./app/authenticate/registration-form');
 let credentialRepo = new CredentialRepo(Connection);
 let userRepo = new UserRepo(Connection);
 let hasher = new Hasher();
-
 let authenticate = new Authenticate(credentialRepo, userRepo, hasher);
 
-let credential = new Credential('huyen120495@gmail.com', 'huyen123');
 let user = new User();
 user.setFirstName('dang');
 user.setLastName('huyen');
-let registrationForm = new RegistrationForm(credential, user);
+user.setId(1);
 
-//authenticate.signUp(registrationForm).then(console.log);
-authenticate.signIn(credential).then(console.log)
-
-// let hospitalRepo = new HospitalRepository(Connection);
-
-// let locationRepo = new LocationRepository(Connection);
-
-// let search = new Search(Connection);
-
-// let keywordSearch = new KeywordSearchCondition('a');
-
-// search.search(keywordSearch).then(console.log);
+let location1 = new Location(123.54, 23.11);
+location1.setId(2);
+let hospital1 = new Hospital('hos2', location1);
+hospital1.setId(2);
 
 
-// let location = new Location(321, 111);
-// location.setId(9);
-// locationRepo.edit(location).then(() => {
-//     let hospital = new Hospital('ten hospital', location);
-//     hospital.setId(13);
-//     hospitalRepo.edit(hospital).then(() => {
-//         console.log('ok');
-//     }, () => {
-//         console.log('fail');
-//     });
-// });
+let Rater = require('./app/interaction/rater');
+let RaterRepo = require('./app/interaction/rater-repository');
+let raterRepo = new RaterRepo(Connection);
+let rater = new Rater(user,hospital1, 10, 'content ... edit');
+rater.setId(1);
+console.log(rater);
 
-// hospitalRepo.delete(12).then(console.log);
-
-// hospitalRepo.all().then(console.log);
+raterRepo.edit(rater).then(console.log);

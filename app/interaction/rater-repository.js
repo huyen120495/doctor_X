@@ -10,15 +10,15 @@ class RaterReposotory {
             hospital_name : rater.getHospital().getName(),
             user_id : rater.getUser().getId(),
             user_name : rater.getUser().getName(),
-            content : rater.getContent,
+            content : rater.getContent(),
             time : rater.getTime(),
-            score : interaction.getRater().getScore()
+            score : rater.getScore()
         })
     }
 
     edit(rater) {
         return this.connection('rates').update({
-            content : rater.getContent,
+            content : rater.getContent(),
             score : rater.getScore()
         }).where({
             id : rater.getId(),
