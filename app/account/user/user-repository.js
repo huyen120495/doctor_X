@@ -22,19 +22,19 @@ class UserRepository {
         }).where({
             id : user.getId()
         })
-        let userComment = this.connection('comments').update({
+        let userRate = this.connection('rates').update({
             user_name : user.getName()
         }).where({
             user_id : user.getId(),
             deleted_at : null
         })
-        return Promise.all([userEdit, userComment]);
+        return Promise.all([userEdit, userRate]);
     }
 
-    searchByCredentialId(id) {
+    searchByCredential(credential) {
         return this.connection('users').limit(1)
         .where({
-            credential_id : id
+            credential_id : credential.getId()
         });
     }
 

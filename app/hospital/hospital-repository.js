@@ -23,13 +23,13 @@ class HospitalRepository {
             id : hospital.getId(),
             deleted_at : null
         })
-        let hospitalComment = this.connection('comments').update({
+        let hospitalRate = this.connection('rates').update({
             hospital_name : hospital.getName()
         }).where({
             hospital_id : hospital.getId(),
             deleted_at : null
         })
-        return Promise.all([hospitalEdit, hospitalComment]);
+        return Promise.all([hospitalEdit, hospitalRate]);
     }
 
     delete(id) {
@@ -62,21 +62,6 @@ class HospitalRepository {
         }).where({
             'hospitals.deleted_at' : null
         })
-    }
-
-    searchByKeyword(keyword) {
-        return this.connection('hospitals')
-        .select('hospitals.id', 'hospitals.name', 'hospitals.location_id', 'hospitals.phone', 'hospitals.describe', 'locations.lat', 'locations.long', 'locations.address')
-        .from('hospitals')
-        .innerJoin('locations', function() {
-            this.on('location_id', '=', 'locations.id')
-        })
-        .where(function () {
-        this.where('hospitals.name', 'like', '%' + keyword + '%')
-            .orWhere('hospitals.describe', 'like', '%' + keyword + '%')
-            .orWhere('locations.address', 'like', '%' + keyword + '%')
-        })
-        .where('hospitals.deleted_at', null);
     }
 
 }

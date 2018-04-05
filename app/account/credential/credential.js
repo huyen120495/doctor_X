@@ -24,6 +24,13 @@ class Credential {
     setPassword(password) {
         this.password = password;
     }
+    
+    toJson() {
+        return {
+            email : this.getEmail(),
+            id : this.getId()
+        }
+    }
 
 }
 

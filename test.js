@@ -3,23 +3,21 @@ const HospitalRepository = require('./app/hospital/hospital-repository');
 const Location = require('./app/location/location');
 const LocationRepository = require('./app/location/location-repository');
 const Connection = require('./database/connection');
-const Search = require('./app/search-services/searcher');
-const KeywordSearchCondition = require('./app/search-services/keyword-search-condition');
-const User = require('./app/user/user');
-const UserRepo = require('./app/user/user-repository');
-const Credential = require('./app/credential/credential');
-const CredentialRepo = require('./app/credential/credential-repository');
-const Register = require('./app/register/register');
-const Login = require('./app/login/login')
-const Hasher = require('./app/encrypt/bcript-hasher');
-const RegistrationForm = require('./app/register/registration-form');
+const Search = require('./app/search-service/searcher');
+const KeywordSearchCondition = require('./app/search-service/keyword-search-condition');
+const User = require('./app/account/user/user');
+const UserRepo = require('./app/account/user/user-repository');
+const Credential = require('./app/account/credential/credential');
+const CredentialRepo = require('./app/account/credential/credential-repository');
+const Authenticate = require('./app/authenticate/authenticate');
+const Hasher = require('./app/encrypt/bcrypt-hasher');
+const RegistrationForm = require('./app/authenticate/registration-form');
 
 let credentialRepo = new CredentialRepo(Connection);
 let userRepo = new UserRepo(Connection);
 let hasher = new Hasher();
 
-let register = new Register(credentialRepo, userRepo, hasher);
-let login = new Login(credentialRepo, hasher, userRepo);
+let authenticate = new Authenticate(credentialRepo, userRepo, hasher);
 
 let credential = new Credential('huyen120495@gmail.com', 'huyen123');
 let user = new User();
@@ -27,14 +25,8 @@ user.setFirstName('dang');
 user.setLastName('huyen');
 let registrationForm = new RegistrationForm(credential, user);
 
-// login.login(credential).then(console.log,console.log)
-
-register.register(registrationForm).then(() => {
-    console.log('ok');
-}, (a) => {
-    console.log(a);
-})
-
+//authenticate.signUp(registrationForm).then(console.log);
+authenticate.signIn(credential).then(console.log)
 
 // let hospitalRepo = new HospitalRepository(Connection);
 

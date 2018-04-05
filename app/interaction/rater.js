@@ -34,6 +34,14 @@ class Rater {
         return this.id;
     }
 
+    setContent(content) {
+        this.content = content;
+    }
+
+    getContent() {
+        return this.content;
+    }
+
 }
 
 module.exports = Rater;
