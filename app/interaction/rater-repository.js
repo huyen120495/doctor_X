@@ -19,7 +19,6 @@ class RaterReposotory {
                 deleted_at : null
             })
             .then(avg_rate => {
-                console.log(avg_rate);
                 return this.connection('hospitals').update(avg_rate[0]).where({
                     id : rater.getHospital().getId()
                 })
@@ -34,6 +33,16 @@ class RaterReposotory {
         }).where({
             id : rater.getId(),
             deleted_at : null
+        }).then(() => {
+            return this.connection('rates').avg('score as avg_rate').where({
+                hospital_id : rater.getHospital().getId(),
+                deleted_at : null
+            })
+            .then(avg_rate => {
+                return this.connection('hospitals').update(avg_rate[0]).where({
+                    id : rater.getHospital().getId()
+                })
+            })
         })
     }
 

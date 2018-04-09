@@ -17,6 +17,7 @@ class Searcher {
         condition.describe(sqlQuery);
         return sqlQuery;
      }
-    }
+
+}
 
 module.exports = Searcher;

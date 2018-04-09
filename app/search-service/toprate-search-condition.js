@@ -5,7 +5,7 @@ class TopRateSearchCondition {
     }
 
     setTop(top) {
-        this.top =  top;
+        this.top = top;
     }
 
     describe(sqlQuery) {
