@@ -31,7 +31,7 @@ class Location {
         return this.address;
     }
 
-    distence(location) {
+    distance(location) {
         let from = turf.point([this.long, this.lat]);
         let to = turf.point([location.getLong(), location.getLat()]);
         let options = {units : 'kilometers'};
