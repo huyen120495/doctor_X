@@ -6,7 +6,9 @@ exports.up = function(knex, Promise) {
         table.string('hospital_name');
         table.integer('user_id');
         table.string('user_name');
+        table.text('content');
         table.integer('score');
+        table.bigint('times');
         table.datetime('deleted_at');
     });
 };

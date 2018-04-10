@@ -1,4 +1,3 @@
-
 class KeywordSearchCondition {
 
     constructor(keyword) {
@@ -6,10 +5,8 @@ class KeywordSearchCondition {
     }
     describe(sqlQuery) {
         let keyword = this.keyword;
-        return sqlQuery.where(function () {
-            this.where('name','like', '%'+ keyword + '%')
-                .orWhere('location_id', 'like', '%', + keyword + '%')
-        }).where({deleted_at : null})
+        return sqlQuery.where('name','like', '%'+ keyword + '%')
+        .where({deleted_at : null})
     }
 }
 module.exports = KeywordSearchCondition;

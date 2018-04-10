@@ -23,6 +23,9 @@ class User {
     setCredential_id() {
 
     }
+    setId(id) {
+        this.id = id;
+    }
 
     getName() {
         return this.firstName +' '+ this.lastName;

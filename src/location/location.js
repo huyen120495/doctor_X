@@ -26,6 +26,10 @@ class Location {
         this.id = id;
     }
 
+    setAddress(address) {
+        this.address = address;
+    }
+
     distance(location){
         let from = turf.point([this.lat, this.long]);
         let to = turf.point([location.getLat(), location.getLong()]);

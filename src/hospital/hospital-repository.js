@@ -3,23 +3,38 @@ class HospitalRepository {
         this.connection = connection;
     }
     add(hospital) {
-        return this.connection('hospitals').insert({
-            name : hospital.getName(),
-            location_id : hospital.getLocation().getId(),
-            phone : hospital.getPhone(),
-            describe : hospital.getDescribe()
-        })
+        return this.connection('locations').insert({
+            lat: hospital.getLocation().getLat(),
+            long: hospital.getLocation().getLong(),
+            address: hospital.getLocation().getAddress()
+        }).then((locationId) => {
+            hospital.getLocation().setId(locationId);
+            return this.connection('hospitals').insert({
+                name: hospital.getName(),
+                location_id: hospital.getLocation().getId(),
+                phone: hospital.getPhone(),
+                describe: hospital.getDescribe()
+            })
+        });
     }
 
     edit(hospital) {
-        const hospitalEdit = this.connection('hospitals').insert({
-            name : hospital.getName(),
-            location_id : hospital.getLocation().getId(),
-            phone : hospital.getPhone(),
-            describe : hospital.getDescribe()
+        const hospitalEdit = this.connection('locations').update({
+            lat: hospital.getLocation().getLat(),
+            long: hospital.getLocation().getLong(),
+            address: hospital.getLocation().getAddress()
         }).where({
-            id : hospital.getId(),
-            deleted_at: null
+            id : hospital.getLocation().getId()
+        }).then(() => {
+            return this.connection('hospitals').update({
+                name: hospital.getName(),
+                location_id: hospital.getLocation().getId(),
+                phone: hospital.getPhone(),
+                describe: hospital.getDescribe()
+            }).where({
+                id : hospital.getId(),
+                deleted_at : null
+            })
         });
 
         const comment = this.connection('comments').update({
